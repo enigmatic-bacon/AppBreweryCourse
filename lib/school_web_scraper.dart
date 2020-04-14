@@ -11,6 +11,7 @@ Future initiate(BaseClient client) async
   {
     return response.body;
   }
+  print(response.body);
   var document = parse(response.body);
   List<Element> links = document.querySelectorAll('td.title > a.storylink');
   List<Map<String, dynamic>> linkMap = [];
