@@ -3,5 +3,6 @@ import 'package:school_web_scraper/school_web_scraper.dart' as school_web_scrape
 
 void main(List<String> arguments) async 
 {
-  print(await school_web_scraper.initiate(Client()));
+  //print(await school_web_scraper.initiate(Client()));
+  await school_web_scraper.WebsiteHasChanged(Client());
 }
