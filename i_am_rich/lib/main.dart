@@ -12,8 +12,7 @@ void main() {
         backgroundColor: Color(0xFFed6a5a),
         body: Center(
           child: Image(
-            image: NetworkImage(
-                'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2F_5ZTdWfgoDA%2Fmaxresdefault.jpg&f=1&nofb=1'),
+            image: AssetImage('images/diamond.png'),
           ),
         ),
       ),
