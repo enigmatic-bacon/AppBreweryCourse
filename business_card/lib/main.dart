@@ -23,6 +23,24 @@ class MyApp extends StatelessWidget {
                 radius: 50.0,
                 backgroundImage: AssetImage('images/profile.jpg'),
               ),
+              Text(
+                'ALEX BISMUTH',
+                style: TextStyle(
+                  fontSize: 50.0,
+                  letterSpacing: 1.5,
+                  color: Colors.white,
+                  fontFamily: 'DirtyLarry',
+                ),
+              ),
+              Text(
+                'Mobile Developer',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.teal[100],
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w200,
+                ),
+              ),
             ],
           ),
         ),
