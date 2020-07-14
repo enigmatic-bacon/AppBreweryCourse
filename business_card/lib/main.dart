@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.amber,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -36,65 +36,52 @@ class MyApp extends StatelessWidget {
                 'Mobile Developer',
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: Colors.teal[100],
+                  color: Colors.white,
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Container(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 20.0,
-                ),
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.phone,
-                      color: Colors.teal,
-                    ),
-                    SizedBox(
-                      width: 25.0,
-                    ),
-                    Text(
-                      '+1 650 387 8701',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.teal[900],
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+              SizedBox(
+                height: 20.0,
+                width: 200.0,
+                child: Divider(
+                  color: Colors.white,
                 ),
               ),
-              Container(
-                color: Colors.white,
+              Card(
                 margin: EdgeInsets.symmetric(
                   vertical: 10.0,
                   horizontal: 20.0,
                 ),
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.email,
-                      color: Colors.teal,
+                child: ListTile(
+                  leading: Icon(Icons.phone, color: Colors.orange[700]),
+                  title: Text(
+                    '+1 650 387 8701',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.grey[900],
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
                     ),
-                    SizedBox(
-                      width: 25.0,
+                  ),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 20.0,
+                ),
+                child: ListTile(
+                  leading: Icon(Icons.email, color: Colors.orange[700]),
+                  title: Text(
+                    'bismuthalex@gmail.com',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.grey[900],
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
                     ),
-                    Text(
-                      'bismuthalex@gmail.com',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.teal[900],
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
