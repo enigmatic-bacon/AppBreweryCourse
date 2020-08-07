@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'questions.dart';
 
 void main() => runApp(Quizzler());
 
@@ -26,10 +27,12 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> _scorekeeper = [];
-  List<String> _questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
+  List<Question> _questions = [
+    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        a: true),
+    Question(q: 'A slug\'s blood is green.', a: true),
   ];
   int _questionIndex = 0;
 
@@ -45,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                _questions[_questionIndex],
+                _questions[_questionIndex].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -69,13 +72,26 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool answerIsCorrect =
+                    _questions[_questionIndex].questionAnswer == true;
                 //The user picked true.
                 setState(() {
-                  _questionIndex++;
-                  _scorekeeper.add(Icon(
-                    Icons.close,
-                    color: Colors.green,
-                  ));
+                  if (_questionIndex < _questions.length - 1) {
+                    _questionIndex++;
+                  } else {
+                    _questionIndex = 0;
+                  }
+                  if (answerIsCorrect) {
+                    _scorekeeper.add(Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
+                  } else {
+                    _scorekeeper.add(Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ));
+                  }
                 });
               },
             ),
@@ -94,15 +110,26 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool answerIsCorrect =
+                    _questions[_questionIndex].questionAnswer == false;
                 //The user picked false.
                 setState(() {
-                  _questionIndex++;
-                  _scorekeeper.add(
-                    Icon(
+                  if (_questionIndex < _questions.length - 1) {
+                    _questionIndex++;
+                  } else {
+                    _questionIndex = 0;
+                  }
+                  if (answerIsCorrect) {
+                    _scorekeeper.add(Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
+                  } else {
+                    _scorekeeper.add(Icon(
                       Icons.close,
                       color: Colors.red,
-                    ),
-                  );
+                    ));
+                  }
                 });
               },
             ),
