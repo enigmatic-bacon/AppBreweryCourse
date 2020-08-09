@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'questions.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -27,13 +29,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> _scorekeeper = [];
-  List<Question> _questions = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet.',
-        a: true),
-    Question(q: 'A slug\'s blood is green.', a: true),
-  ];
+
   int _questionIndex = 0;
 
   @override
@@ -48,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                _questions[_questionIndex].questionText,
+                quizBrain.questions[_questionIndex].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -73,10 +69,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool answerIsCorrect =
-                    _questions[_questionIndex].questionAnswer == true;
+                    quizBrain.questions[_questionIndex].questionAnswer == true;
                 //The user picked true.
                 setState(() {
-                  if (_questionIndex < _questions.length - 1) {
+                  if (_questionIndex < quizBrain.questions.length - 1) {
                     _questionIndex++;
                   } else {
                     _questionIndex = 0;
@@ -111,10 +107,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool answerIsCorrect =
-                    _questions[_questionIndex].questionAnswer == false;
+                    quizBrain.questions[_questionIndex].questionAnswer == false;
                 //The user picked false.
                 setState(() {
-                  if (_questionIndex < _questions.length - 1) {
+                  if (_questionIndex < quizBrain.questions.length - 1) {
                     _questionIndex++;
                   } else {
                     _questionIndex = 0;
