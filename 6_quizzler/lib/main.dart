@@ -29,9 +29,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> _scorekeeper = [];
-
-  int _questionIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questions[_questionIndex].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -68,15 +65,10 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool answerIsCorrect =
-                    quizBrain.questions[_questionIndex].questionAnswer == true;
+                bool answerIsCorrect = quizBrain.getQuestionAnswer() == true;
                 //The user picked true.
                 setState(() {
-                  if (_questionIndex < quizBrain.questions.length - 1) {
-                    _questionIndex++;
-                  } else {
-                    _questionIndex = 0;
-                  }
+                  quizBrain.nextQuestion();
                   if (answerIsCorrect) {
                     _scorekeeper.add(Icon(
                       Icons.check,
@@ -106,15 +98,10 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool answerIsCorrect =
-                    quizBrain.questions[_questionIndex].questionAnswer == false;
+                bool answerIsCorrect = quizBrain.getQuestionAnswer() == false;
                 //The user picked false.
                 setState(() {
-                  if (_questionIndex < quizBrain.questions.length - 1) {
-                    _questionIndex++;
-                  } else {
-                    _questionIndex = 0;
-                  }
+                  quizBrain.nextQuestion();
                   if (answerIsCorrect) {
                     _scorekeeper.add(Icon(
                       Icons.check,
