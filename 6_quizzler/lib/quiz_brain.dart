@@ -31,11 +31,16 @@ class QuizBrain {
         true),
   ];
 
+  bool isFinished() => !(questionNumber < getNumQuestions());
+  void _reset() {
+    questionNumber = 0;
+  }
+
   void nextQuestion() {
-    if (questionNumber < getNumQuestions()) {
-      ++questionNumber;
+    if (isFinished()) {
+      _reset();
     } else {
-      questionNumber = 0;
+      ++questionNumber;
     }
   }
 

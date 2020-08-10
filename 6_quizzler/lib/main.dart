@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
@@ -29,6 +30,21 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> _scorekeeper = [];
+
+  void checkAnswer(bool pickedAnswer) {
+    if (pickedAnswer == quizBrain.getQuestionAnswer()) {
+      _scorekeeper.add(Icon(
+        Icons.check,
+        color: Colors.green,
+      ));
+    } else {
+      _scorekeeper.add(Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,21 +81,18 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool answerIsCorrect = quizBrain.getQuestionAnswer() == true;
                 //The user picked true.
                 setState(() {
-                  quizBrain.nextQuestion();
-                  if (answerIsCorrect) {
-                    _scorekeeper.add(Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
-                  } else {
-                    _scorekeeper.add(Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
+                  checkAnswer(true);
+                  if (quizBrain.isFinished()) {
+                    Alert(
+                            context: context,
+                            title: "Out of Questions",
+                            desc: "Resetting questions.")
+                        .show();
+                    _scorekeeper.clear();
                   }
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -98,21 +111,18 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool answerIsCorrect = quizBrain.getQuestionAnswer() == false;
                 //The user picked false.
                 setState(() {
-                  quizBrain.nextQuestion();
-                  if (answerIsCorrect) {
-                    _scorekeeper.add(Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
-                  } else {
-                    _scorekeeper.add(Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
+                  checkAnswer(false);
+                  if (quizBrain.isFinished()) {
+                    Alert(
+                            context: context,
+                            title: "Out of Questions",
+                            desc: "Resetting questions.")
+                        .show();
+                    _scorekeeper.clear();
                   }
+                  quizBrain.nextQuestion();
                 });
               },
             ),
