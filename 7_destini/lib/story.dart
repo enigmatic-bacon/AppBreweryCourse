@@ -1,10 +1,10 @@
 //COMPLETE: Step 2 - Create a new class called Story.
 class Story {
   String storyTitle;
-  String choice1Text;
-  String choice2Text;
+  String choice1;
+  String choice2;
 
-  Story({this.storyTitle, this.choice1Text, this.choice2Text});
+  Story({this.storyTitle, this.choice1, this.choice2});
 }
 
 //COMPLETE: Step 3 - Create 3 properties for this class, A. storyTitle to store the story text. B. choice1 to store the text for choice 1, C. choice2 to store the text for choice 2.
