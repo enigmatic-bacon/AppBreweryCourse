@@ -20,7 +20,7 @@ class _InputPageState extends State<InputPage> {
               child: _buildLayoudCardRow(),
             ),
             Expanded(
-              child: _buildLayoutCard(),
+              child: LayoutCard(),
             ),
             Expanded(
               child: _buildLayoudCardRow(),
@@ -33,13 +33,20 @@ class _InputPageState extends State<InputPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(child: _buildLayoutCard()),
-        Expanded(child: _buildLayoutCard()),
+        Expanded(child: LayoutCard()),
+        Expanded(child: LayoutCard()),
       ],
     );
   }
+}
 
-  Container _buildLayoutCard() {
+class LayoutCard extends StatelessWidget {
+  const LayoutCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
