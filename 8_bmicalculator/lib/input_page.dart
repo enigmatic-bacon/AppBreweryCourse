@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/layout_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'card_contents.dart';
+import 'icon_content.dart';
 
 const double _bottomContainerHeight = 80.0;
 const Color _activeCardColor = Color(0xFF1D1E33);
@@ -28,7 +28,7 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: LayoutCard(
                       color: _activeCardColor,
-                      cardChild: CardContents(
+                      cardChild: IconContent(
                         label: 'Male',
                         icon: FontAwesomeIcons.mars,
                       ),
@@ -37,7 +37,7 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: LayoutCard(
                       color: _activeCardColor,
-                      cardChild: CardContents(
+                      cardChild: IconContent(
                         label: 'Female',
                         icon: FontAwesomeIcons.venus,
                       ),

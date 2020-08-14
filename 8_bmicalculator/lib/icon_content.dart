@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CardContents extends StatelessWidget {
+class IconContent extends StatelessWidget {
   final String label;
   final IconData icon;
-  const CardContents({this.label, this.icon});
+  const IconContent({this.label, this.icon});
 
   @override
   Widget build(BuildContext context) {
