@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/layout_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'card_contents.dart';
 
 const double _bottomContainerHeight = 80.0;
 const Color _activeCardColor = Color(0xFF1D1E33);
@@ -21,7 +23,28 @@ class _InputPageState extends State<InputPage> {
         body: Column(
           children: [
             Expanded(
-              child: _buildLayoudCardRow(),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: LayoutCard(
+                      color: _activeCardColor,
+                      cardChild: CardContents(
+                        text: 'Male',
+                        icon: FontAwesomeIcons.mars,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: LayoutCard(
+                      color: _activeCardColor,
+                      cardChild: CardContents(
+                        text: 'Female',
+                        icon: FontAwesomeIcons.venus,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: LayoutCard(
@@ -29,7 +52,20 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Expanded(
-              child: _buildLayoudCardRow(),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: LayoutCard(
+                      color: _activeCardColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: LayoutCard(
+                      color: _activeCardColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Container(
               color: _bottomContainerColor,
@@ -39,20 +75,5 @@ class _InputPageState extends State<InputPage> {
             )
           ],
         ));
-  }
-
-  Row _buildLayoudCardRow() {
-    return Row(
-      children: [
-        Expanded(
-            child: LayoutCard(
-          color: _activeCardColor,
-        )),
-        Expanded(
-            child: LayoutCard(
-          color: _activeCardColor,
-        )),
-      ],
-    );
   }
 }
