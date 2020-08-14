@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 
 class CardContents extends StatelessWidget {
-  final String text;
+  final String label;
   final IconData icon;
-  const CardContents({this.text, this.icon});
+  const CardContents({this.label, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          icon,
-          size: 80.0,
+        Expanded(
+          flex: 5,
+          child: Icon(
+            icon,
+            size: 60.0,
+          ),
         ),
-        SizedBox(height: 15.0),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8D8E98),
+        Expanded(
+          flex: 2,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Color(0xFF8D8E98),
+            ),
           ),
         ),
       ],

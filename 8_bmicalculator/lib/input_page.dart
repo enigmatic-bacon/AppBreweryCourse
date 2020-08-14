@@ -29,7 +29,7 @@ class _InputPageState extends State<InputPage> {
                     child: LayoutCard(
                       color: _activeCardColor,
                       cardChild: CardContents(
-                        text: 'Male',
+                        label: 'Male',
                         icon: FontAwesomeIcons.mars,
                       ),
                     ),
@@ -38,7 +38,7 @@ class _InputPageState extends State<InputPage> {
                     child: LayoutCard(
                       color: _activeCardColor,
                       cardChild: CardContents(
-                        text: 'Female',
+                        label: 'Female',
                         icon: FontAwesomeIcons.venus,
                       ),
                     ),
