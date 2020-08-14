@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bmi_calculator/layout_card.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class _InputPageState extends State<InputPage> {
           centerTitle: true,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
               child: _buildLayoudCardRow(),
@@ -31,28 +31,10 @@ class _InputPageState extends State<InputPage> {
 
   Row _buildLayoudCardRow() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Expanded(child: LayoutCard()),
         Expanded(child: LayoutCard()),
       ],
-    );
-  }
-}
-
-class LayoutCard extends StatelessWidget {
-  const LayoutCard({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: Color(0xFF1D1E33),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
     );
   }
 }
