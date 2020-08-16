@@ -88,7 +88,7 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: LayoutCard(
-                color: _activeCardColor,
+                color: _inactiveCardColor,
               ),
             ),
             Expanded(
@@ -96,12 +96,12 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: LayoutCard(
-                      color: _activeCardColor,
+                      color: _inactiveCardColor,
                     ),
                   ),
                   Expanded(
                     child: LayoutCard(
-                      color: _activeCardColor,
+                      color: _inactiveCardColor,
                     ),
                   ),
                 ],
