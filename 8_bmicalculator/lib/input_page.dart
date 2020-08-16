@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/layout_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
+import 'genders.dart';
 
 const double _bottomContainerHeight = 80.0;
 const Color _activeCardColor = Color(0xFF1D1E33);
@@ -17,9 +18,8 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = _inactiveCardColor;
   Color femaleCardColor = _inactiveCardColor;
 
-  void updateColor(int gender) {
-    //Male
-    if (gender == 1) {
+  void updateColor(Genders gender) {
+    if (gender == Genders.male) {
       //If it's already active, don't do anything
       if (maleCardColor == _inactiveCardColor) {
         maleCardColor = _activeCardColor;
@@ -55,7 +55,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(1);
+                          updateColor(Genders.male);
                         });
                       },
                       child: LayoutCard(
@@ -71,7 +71,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          updateColor(2);
+                          updateColor(Genders.female);
                         });
                       },
                       child: LayoutCard(
