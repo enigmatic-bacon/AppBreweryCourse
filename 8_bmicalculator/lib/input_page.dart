@@ -3,11 +3,9 @@ import 'package:bmi_calculator/layout_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'genders.dart';
+import 'constants.dart';
 
 const double _bottomContainerHeight = 80.0;
-const Color _activeCardColor = Color(0xFF1D1E33);
-const Color _inactiveCardColor = Color(0xFF111328);
-const Color _bottomContainerColor = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
@@ -37,8 +35,8 @@ class _InputPageState extends State<InputPage> {
                         });
                       },
                       color: selectedGender == Genders.male
-                          ? _activeCardColor
-                          : _inactiveCardColor,
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
                       cardChild: IconContent(
                         label: 'Male',
                         icon: FontAwesomeIcons.mars,
@@ -53,8 +51,8 @@ class _InputPageState extends State<InputPage> {
                         });
                       },
                       color: selectedGender == Genders.female
-                          ? _activeCardColor
-                          : _inactiveCardColor,
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
                       cardChild: IconContent(
                         label: 'Female',
                         icon: FontAwesomeIcons.venus,
@@ -66,7 +64,7 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: LayoutCard(
-                color: _inactiveCardColor,
+                color: kInactiveCardColor,
               ),
             ),
             Expanded(
@@ -74,19 +72,19 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: LayoutCard(
-                      color: _inactiveCardColor,
+                      color: kInactiveCardColor,
                     ),
                   ),
                   Expanded(
                     child: LayoutCard(
-                      color: _inactiveCardColor,
+                      color: kInactiveCardColor,
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              color: _bottomContainerColor,
+              color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
               height: _bottomContainerHeight,
