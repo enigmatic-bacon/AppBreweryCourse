@@ -35,7 +35,7 @@ class HeightText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: [
-        _labelText('Height'),
+        _labelText('Height '),
         _numberText((height.value ~/ unitConversion).toString()),
         _labelText(majorUnit),
         Container(

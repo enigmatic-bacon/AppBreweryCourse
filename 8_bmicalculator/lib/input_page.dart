@@ -71,35 +71,31 @@ class _InputPageState extends State<InputPage> {
                     HeightText(
                       height: height,
                     ),
-                    Row(
-                      children: [
-                        SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            inactiveTrackColor: Color(0xFF8D8E98),
-                            activeTrackColor: Colors.white,
-                            thumbColor: kBottomContainerColor,
-                            thumbShape:
-                                RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                            overlayShape:
-                                RoundSliderOverlayShape(overlayRadius: 30.0),
-                            overlayColor: Color(0x29EB1555),
-                            trackHeight: 1.5,
-                          ),
-                          child: Slider(
-                              value: height.value,
-                              min: height.heightUnits == Units.metric
-                                  ? minMetricHeight
-                                  : minImperialHeight,
-                              max: height.heightUnits == Units.metric
-                                  ? maxMetricHeight
-                                  : maxImperialHeight,
-                              onChanged: (double newHeight) {
-                                setState(() {
-                                  height.value = newHeight;
-                                });
-                              }),
-                        ),
-                      ],
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        activeTrackColor: Colors.white,
+                        thumbColor: kBottomContainerColor,
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                        overlayColor: Color(0x29EB1555),
+                        trackHeight: 1.5,
+                      ),
+                      child: Slider(
+                          value: height.value,
+                          min: height.heightUnits == Units.metric
+                              ? minMetricHeight
+                              : minImperialHeight,
+                          max: height.heightUnits == Units.metric
+                              ? maxMetricHeight
+                              : maxImperialHeight,
+                          onChanged: (double newHeight) {
+                            setState(() {
+                              height.value = newHeight;
+                            });
+                          }),
                     ),
                   ],
                 ),
