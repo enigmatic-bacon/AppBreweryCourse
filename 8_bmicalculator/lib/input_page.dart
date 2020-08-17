@@ -1,15 +1,13 @@
+import 'package:bmi_calculator/height.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/layout_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'height_text.dart';
 import 'icon_content.dart';
 import 'units.dart';
 import 'constants.dart';
 
 const double _bottomContainerHeight = 80.0;
-const double minImperialHeight = 47.24;
-const double minMetricHeight = 120;
-const double maxImperialHeight = 86.61;
-const double maxMetricHeight = 220;
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,24 +15,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Units selectedUnits = Units.metric;
-  double height = 180.0;
-  void _changeHeightUnits(Units newUnit) {
-    if (newUnit == Units.imperial) {
-      double numerator = height - minMetricHeight;
-      double denominator = maxMetricHeight - minMetricHeight;
-      double percent = numerator / denominator;
-      height = ((maxImperialHeight - minImperialHeight) * percent) +
-          minImperialHeight;
-    } else {
-      double numerator = height - minImperialHeight;
-      double denominator = maxImperialHeight - minImperialHeight;
-      double percent = numerator / denominator;
-      height =
-          ((maxMetricHeight - minMetricHeight) * percent) + minMetricHeight;
-    }
-    selectedUnits = newUnit;
-  }
+  Height height = Height(value: 180, heightUnits: Units.metric);
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +34,10 @@ class _InputPageState extends State<InputPage> {
                     child: LayoutCard(
                       onTapFunction: () {
                         setState(() {
-                          if (selectedUnits != Units.metric) {
-                            _changeHeightUnits(Units.metric);
-                          }
+                          height.changeHeightUnits(Units.metric);
                         });
                       },
-                      color: selectedUnits == Units.metric
+                      color: height.heightUnits == Units.metric
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: IconContent(
@@ -71,12 +50,10 @@ class _InputPageState extends State<InputPage> {
                     child: LayoutCard(
                       onTapFunction: () {
                         setState(() {
-                          if (selectedUnits != Units.imperial) {
-                            _changeHeightUnits(Units.imperial);
-                          }
+                          height.changeHeightUnits(Units.imperial);
                         });
                       },
-                      color: selectedUnits == Units.imperial
+                      color: height.heightUnits == Units.imperial
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       cardChild: IconContent(
@@ -98,11 +75,10 @@ class _InputPageState extends State<InputPage> {
                       style: kLabelTextStyle,
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
+                            inactiveTrackColor: Color(0xFF8D8E98),
                             activeTrackColor: Colors.white,
                             thumbColor: kBottomContainerColor,
                             thumbShape:
@@ -113,39 +89,21 @@ class _InputPageState extends State<InputPage> {
                             trackHeight: 1.5,
                           ),
                           child: Slider(
-                              value: height.toDouble(),
-                              min: selectedUnits == Units.metric
+                              value: height.value,
+                              min: height.heightUnits == Units.metric
                                   ? minMetricHeight
                                   : minImperialHeight,
-                              max: selectedUnits == Units.metric
+                              max: height.heightUnits == Units.metric
                                   ? maxMetricHeight
                                   : maxImperialHeight,
-                              inactiveColor: Color(0xFF8D8E98),
                               onChanged: (double newHeight) {
                                 setState(() {
-                                  height = newHeight;
+                                  height.value = newHeight;
                                 });
                               }),
                         ),
-                        Text(
-                          selectedUnits == Units.metric
-                              ? (height ~/ 100).toString()
-                              : (height ~/ 12).toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Text(
-                          selectedUnits == Units.metric ? 'm' : 'ft',
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          selectedUnits == Units.metric
-                              ? (height.toInt() % 100).toString()
-                              : (height.toInt() % 12).toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Text(
-                          selectedUnits == Units.metric ? 'cm' : 'in',
-                          style: kLabelTextStyle,
+                        HeightText(
+                          height: height,
                         ),
                       ],
                     ),
