@@ -102,21 +102,34 @@ class _InputPageState extends State<InputPage> {
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.alphabetic,
                       children: [
-                        Slider(
-                            value: height.toDouble(),
-                            min: selectedUnits == Units.metric
-                                ? minMetricHeight
-                                : minImperialHeight,
-                            max: selectedUnits == Units.metric
-                                ? maxMetricHeight
-                                : maxImperialHeight,
-                            activeColor: kBottomContainerColor,
-                            inactiveColor: Color(0xFF8D8E98),
-                            onChanged: (double newHeight) {
-                              setState(() {
-                                height = newHeight;
-                              });
-                            }),
+                        Expanded(
+                          child: SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              activeTrackColor: Colors.white,
+                              thumbColor: kBottomContainerColor,
+                              thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: 15.0),
+                              overlayShape:
+                                  RoundSliderOverlayShape(overlayRadius: 30.0),
+                              overlayColor: Color(0x29EB1555),
+                              trackHeight: 1.5,
+                            ),
+                            child: Slider(
+                                value: height.toDouble(),
+                                min: selectedUnits == Units.metric
+                                    ? minMetricHeight
+                                    : minImperialHeight,
+                                max: selectedUnits == Units.metric
+                                    ? maxMetricHeight
+                                    : maxImperialHeight,
+                                inactiveColor: Color(0xFF8D8E98),
+                                onChanged: (double newHeight) {
+                                  setState(() {
+                                    height = newHeight;
+                                  });
+                                }),
+                          ),
+                        ),
                         Text(
                           height.toInt().toString(),
                           style: kNumberTextStyle,
