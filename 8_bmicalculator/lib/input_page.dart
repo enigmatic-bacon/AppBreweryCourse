@@ -8,6 +8,7 @@ import 'weight_text.dart';
 import 'icon_content.dart';
 import 'units.dart';
 import 'constants.dart';
+import 'button_pair_addsub.dart';
 
 const double _bottomContainerHeight = 80.0;
 
@@ -19,6 +20,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Height height = Height(value: 180, heightUnits: Units.metric);
   Weight weight = Weight(value: 60, weightUnits: Units.metric);
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -115,33 +117,17 @@ class _InputPageState extends State<InputPage> {
                       cardChild: Column(
                         children: [
                           WeightText(weight: weight),
-                          Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: RoundIconButton(
-                                  icon: Icons.remove,
-                                  onPressed: () {
-                                    setState(() {
-                                      weight.value--;
-                                    });
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: RoundIconButton(
-                                  icon: Icons.add,
-                                  onPressed: () {
-                                    setState(() {
-                                      weight.value++;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
+                          ButtonPairAddSubtract(
+                            onMinusClick: () {
+                              setState(() {
+                                weight.value--;
+                              });
+                            },
+                            onPlusClick: () {
+                              setState(() {
+                                weight.value++;
+                              });
+                            },
                           )
                         ],
                       ),
@@ -150,6 +136,30 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(
                     child: LayoutCard(
+                      cardChild: Column(
+                        children: [
+                          Text(
+                            'Age',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          ButtonPairAddSubtract(
+                            onMinusClick: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
+                            onPlusClick: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          )
+                        ],
+                      ),
                       color: kInactiveCardColor,
                     ),
                   ),
@@ -164,25 +174,5 @@ class _InputPageState extends State<InputPage> {
             )
           ],
         ));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onPressed;
-  const RoundIconButton({this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      child: Icon(icon),
-      fillColor: kBottomContainerColor,
-      shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(
-        width: 45.0,
-        height: 45.0,
-      ),
-    );
   }
 }
