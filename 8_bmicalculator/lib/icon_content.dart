@@ -8,23 +8,21 @@ class IconContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 5,
-          child: Icon(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(
             icon,
-            size: 60.0,
+            size: 40.0,
           ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Text(
+          Text(
             label,
             style: kLabelTextStyle,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

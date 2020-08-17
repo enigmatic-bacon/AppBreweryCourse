@@ -13,31 +13,53 @@ class HeightText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _buildText();
+  }
+
+  Row _buildText() {
+    int unitConversion;
+    String majorUnit;
+    String minorUnit;
+
+    if (height.heightUnits == Units.metric) {
+      unitConversion = 100;
+      majorUnit = 'm';
+      minorUnit = 'cm';
+    } else if (height.heightUnits == Units.imperial) {
+      unitConversion = 12;
+      majorUnit = 'ft';
+      minorUnit = 'in';
+    }
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: [
-        Text(
-          height.heightUnits == Units.metric
-              ? (height.value ~/ 100).toString()
-              : (height.value ~/ 12).toString(),
-          style: kNumberTextStyle,
+        _labelText('Height'),
+        _numberText((height.value ~/ unitConversion).toString()),
+        _labelText(majorUnit),
+        Container(
+          width: kNumberTextStyle.fontSize + kGeneralPadding,
+          alignment: Alignment.centerRight,
+          child:
+              _numberText((height.value.toInt() % unitConversion).toString()),
         ),
-        Text(
-          height.heightUnits == Units.metric ? 'm' : 'ft',
-          style: kLabelTextStyle,
-        ),
-        Text(
-          height.heightUnits == Units.metric
-              ? (height.value.toInt() % 100).toString()
-              : (height.value.toInt() % 12).toString(),
-          style: kNumberTextStyle,
-        ),
-        Text(
-          height.heightUnits == Units.metric ? 'cm' : 'in',
-          style: kLabelTextStyle,
-        ),
+        _labelText(minorUnit),
       ],
+    );
+  }
+
+  Text _labelText(String text) {
+    return Text(
+      text,
+      style: kLabelTextStyle,
+    );
+  }
+
+  Text _numberText(String text) {
+    return Text(
+      text,
+      style: kNumberTextStyle,
     );
   }
 }

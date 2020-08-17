@@ -27,52 +27,49 @@ class _InputPageState extends State<InputPage> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: LayoutCard(
-                      onTapFunction: () {
-                        setState(() {
-                          height.changeHeightUnits(Units.metric);
-                        });
-                      },
-                      color: height.heightUnits == Units.metric
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardChild: IconContent(
-                        label: 'Metric',
-                        icon: FontAwesomeIcons.globeEurope,
-                      ),
+            Row(
+              children: [
+                Expanded(
+                  child: LayoutCard(
+                    onTapFunction: () {
+                      setState(() {
+                        height.changeHeightUnits(Units.metric);
+                      });
+                    },
+                    color: height.heightUnits == Units.metric
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
+                    cardChild: IconContent(
+                      label: 'Metric',
+                      icon: FontAwesomeIcons.globeEurope,
                     ),
                   ),
-                  Expanded(
-                    child: LayoutCard(
-                      onTapFunction: () {
-                        setState(() {
-                          height.changeHeightUnits(Units.imperial);
-                        });
-                      },
-                      color: height.heightUnits == Units.imperial
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      cardChild: IconContent(
-                        label: 'Imperial',
-                        icon: FontAwesomeIcons.flagUsa,
-                      ),
+                ),
+                Expanded(
+                  child: LayoutCard(
+                    onTapFunction: () {
+                      setState(() {
+                        height.changeHeightUnits(Units.imperial);
+                      });
+                    },
+                    color: height.heightUnits == Units.imperial
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
+                    cardChild: IconContent(
+                      label: 'Imperial',
+                      icon: FontAwesomeIcons.flagUsa,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Expanded(
               child: LayoutCard(
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Height',
-                      style: kLabelTextStyle,
+                    HeightText(
+                      height: height,
                     ),
                     Row(
                       children: [
@@ -102,9 +99,6 @@ class _InputPageState extends State<InputPage> {
                                 });
                               }),
                         ),
-                        HeightText(
-                          height: height,
-                        ),
                       ],
                     ),
                   ],
@@ -117,6 +111,36 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: LayoutCard(
+                      cardChild: Column(
+                        children: [
+                          Text(
+                            'Weight',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            '60',
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: RoundIconButton(
+                                  icon: Icons.remove,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: RoundIconButton(
+                                  icon: Icons.add,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                       color: kInactiveCardColor,
                     ),
                   ),
@@ -136,5 +160,24 @@ class _InputPageState extends State<InputPage> {
             )
           ],
         ));
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  const RoundIconButton({this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: () {},
+      child: Icon(icon),
+      fillColor: kBottomContainerColor,
+      shape: CircleBorder(),
+      constraints: BoxConstraints.tightFor(
+        width: 40.0,
+        height: 40.0,
+      ),
+    );
   }
 }
