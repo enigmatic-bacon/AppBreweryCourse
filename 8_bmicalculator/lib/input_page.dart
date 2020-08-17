@@ -10,7 +10,7 @@ import 'units.dart';
 import 'constants.dart';
 import 'button_pair_addsub.dart';
 
-const double _bottomContainerHeight = 80.0;
+const double _bottomContainerHeight = 60.0;
 
 class InputPage extends StatefulWidget {
   @override
@@ -167,10 +167,23 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Container(
-              color: kBottomContainerColor,
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
+                  ),
+                ),
+                color: kBottomContainerColor,
+              ),
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
               height: _bottomContainerHeight,
+              alignment: Alignment.center,
+              child: Text(
+                'Calculate',
+                style: kNumberTextStyle,
+              ),
             )
           ],
         ));
