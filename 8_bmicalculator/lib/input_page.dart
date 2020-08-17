@@ -1,8 +1,10 @@
 import 'package:bmi_calculator/height.dart';
+import 'package:bmi_calculator/weight.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/layout_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'height_text.dart';
+import 'weight_text.dart';
 import 'icon_content.dart';
 import 'units.dart';
 import 'constants.dart';
@@ -16,6 +18,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Height height = Height(value: 180, heightUnits: Units.metric);
+  Weight weight = Weight(value: 60, weightUnits: Units.metric);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class _InputPageState extends State<InputPage> {
                     onTapFunction: () {
                       setState(() {
                         height.changeHeightUnits(Units.metric);
+                        weight.changeWeightUnits(Units.metric);
                       });
                     },
                     color: height.heightUnits == Units.metric
@@ -50,6 +54,7 @@ class _InputPageState extends State<InputPage> {
                     onTapFunction: () {
                       setState(() {
                         height.changeHeightUnits(Units.imperial);
+                        weight.changeWeightUnits(Units.imperial);
                       });
                     },
                     color: height.heightUnits == Units.imperial
@@ -109,14 +114,7 @@ class _InputPageState extends State<InputPage> {
                     child: LayoutCard(
                       cardChild: Column(
                         children: [
-                          Text(
-                            'Weight',
-                            style: kLabelTextStyle,
-                          ),
-                          Text(
-                            '60',
-                            style: kNumberTextStyle,
-                          ),
+                          WeightText(weight: weight),
                           Row(
                             children: [
                               Padding(
@@ -124,6 +122,11 @@ class _InputPageState extends State<InputPage> {
                                     const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: RoundIconButton(
                                   icon: Icons.remove,
+                                  onPressed: () {
+                                    setState(() {
+                                      weight.value--;
+                                    });
+                                  },
                                 ),
                               ),
                               Padding(
@@ -131,6 +134,11 @@ class _InputPageState extends State<InputPage> {
                                     const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: RoundIconButton(
                                   icon: Icons.add,
+                                  onPressed: () {
+                                    setState(() {
+                                      weight.value++;
+                                    });
+                                  },
                                 ),
                               ),
                             ],
@@ -161,18 +169,19 @@ class _InputPageState extends State<InputPage> {
 
 class RoundIconButton extends StatelessWidget {
   final IconData icon;
-  const RoundIconButton({this.icon});
+  final Function onPressed;
+  const RoundIconButton({this.icon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Icon(icon),
       fillColor: kBottomContainerColor,
       shape: CircleBorder(),
       constraints: BoxConstraints.tightFor(
-        width: 40.0,
-        height: 40.0,
+        width: 45.0,
+        height: 45.0,
       ),
     );
   }
