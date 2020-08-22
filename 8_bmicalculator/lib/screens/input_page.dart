@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/bmi_brain.dart';
 import 'package:bmi_calculator/height.dart';
 import 'package:bmi_calculator/weight.dart';
 import 'package:flutter/material.dart';
@@ -168,7 +169,11 @@ class _InputPageState extends State<InputPage> {
           SwitchScreenButton(
             label: 'Calculate',
             onTap: () {
-              Navigator.pushNamed(context, '/results');
+              Navigator.pushNamed(
+                context,
+                '/results',
+                arguments: BMIBrain(height: height, weight: weight),
+              );
             },
           ),
         ],
