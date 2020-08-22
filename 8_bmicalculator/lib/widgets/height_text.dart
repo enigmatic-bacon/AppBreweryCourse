@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/height.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'units.dart';
+import '../constants.dart';
+import '../units.dart';
 
 class HeightText extends StatelessWidget {
   const HeightText({

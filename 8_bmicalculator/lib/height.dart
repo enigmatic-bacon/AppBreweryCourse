@@ -1,4 +1,5 @@
 import 'units.dart';
+import 'utils.dart';
 
 const double minImperialHeight = 47.24;
 const double minMetricHeight = 120;
@@ -14,16 +15,9 @@ class Height {
     if (newUnit == heightUnits) return;
 
     if (newUnit == Units.imperial) {
-      double numerator = value - minMetricHeight;
-      double denominator = maxMetricHeight - minMetricHeight;
-      double percent = numerator / denominator;
-      value = ((maxImperialHeight - minImperialHeight) * percent) +
-          minImperialHeight;
+      value = middleOfThree(value / 2.54, minImperialHeight, maxImperialHeight);
     } else {
-      double numerator = value - minImperialHeight;
-      double denominator = maxImperialHeight - minImperialHeight;
-      double percent = numerator / denominator;
-      value = ((maxMetricHeight - minMetricHeight) * percent) + minMetricHeight;
+      value = middleOfThree(value * 2.54, minMetricHeight, maxMetricHeight);
     }
     heightUnits = newUnit;
   }

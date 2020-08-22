@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'units.dart';
-import 'weight.dart';
+import '../constants.dart';
+import '../units.dart';
+import '../weight.dart';
 
 class WeightText extends StatelessWidget {
   const WeightText({
