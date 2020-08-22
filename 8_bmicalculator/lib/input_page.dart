@@ -166,23 +166,30 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/results');
+              },
+              child: Container(
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
+                  ),
+                  color: kBottomContainerColor,
+                ),
+                margin: EdgeInsets.only(top: 10.0),
+                width: double.infinity,
+                height: _bottomContainerHeight,
+                alignment: Alignment.center,
+                child: Text(
+                  'Calculate',
+                  style: kNumberTextStyle.copyWith(
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
-                color: kBottomContainerColor,
-              ),
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: _bottomContainerHeight,
-              alignment: Alignment.center,
-              child: Text(
-                'Calculate',
-                style: kNumberTextStyle,
               ),
             )
           ],
